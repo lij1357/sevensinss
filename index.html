@@ -26,38 +26,38 @@
       .container {
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    width:80%;
-        justify-content: center; 
+    align-items: right; 
+   
+        justify-content: right; 
         height: 100vh; 
-    width: 100%; 
+    width: 300%; 
 }
         .question {
             font-size: 36px;
-            margin: 100 px ;
-          text-align: center;  
-    width: 60%;  
+            margin: 200 px ;
+          text-align: space-between;  
+    width: 100%;  
     max-width: 800px; 
         }
         .options {
             display: flex;
-            flex-direction: column;
+            flex-direction: space-between;
             gap: 10px;
-            width: 60%;
+            width: 120%;
             max-width: 800px;
            align-items: center; 
     margin: center; 
         }
         .options button {
             background-color: #FFF8F0;
-            border: 1px solid #4D0000;
+            border: 2px solid #4D0000;
             color: #4D0000;
-            padding: 20px;
+            padding: 25px;
             cursor: pointer;
             font-size: 18px;
             text-align: center;
-            width: 100%;
-          max-width: 600px
+            width: 120%;
+          max-width: 400px
           
           <button id="option${index}" onclick="selectOption(${index})">${option.text}</button>
 
@@ -68,7 +68,7 @@
             font-weight: bold;
         }
         #result img {
-            width: 200px;
+            width: 800px;
             margin-top: 10px;
         }
       function selectOption(index) {
@@ -77,12 +77,7 @@
         btn.style.backgroundColor = "#FFE6E6";
     }
         
-   { document.getElementById(`option${index}`).style.backgroundColor = "#FFB6C1"; // 淺粉色反白
-
-    // 累積分數
-    for (const sin in questions[currentQuestion].options[index].score) {
-        scores[sin] += questions[currentQuestion].options[index].score[sin];
-    }
+  
 
     // 進入下一題
     currentQuestion++;
@@ -201,7 +196,7 @@
             { "text": "不太符合 —— 只有等人的回覆時，才會頻繁刷新", "score": { "Sloth": 2 } },
             { "text": "普通 —— 偶爾會滑個幾次，但還算能控制", "score": { "Sloth": 3 } },
             { "text": "符合 —— 幾乎不自覺地一直刷新，總覺得會有新東西", "score": { "Sloth": 4 } },
-            { "text": "非常符合 —— 我的手已經養成習慣，不滑會覺得焦慮", "score": { "Sloth": 5 } }
+            { "text": "非常符合 —— 我的手已經養成習慣，不滑會覺得焦慮", "score": { "Sloth": 6 } }
         ]
     },
     {
