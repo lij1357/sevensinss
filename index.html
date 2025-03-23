@@ -3,112 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>社群七大</title>
+    <title>社群七大罪</title>
     <style>
-      
+      .options button {
+    background-color: #FFF8F0;
+    border: 2px solid #4D0000;
+    color: #4D0000;
+    padding: 16px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    width: 180px;
+    margin: 16px;
+    border-radius: 5px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.options button:hover {
+    background-color: #FFE6E6;
+    transform: scale(1.05);
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+      #questionBox p {
+    font-size: 28px;  /* 調整字體大小 */
+    margin-bottom: 20px;
+    color: #4D0000;  /* 字體顏色 */
+}
+
+
         body {
             font-family: serif;
             background-color: #FFF8F0;
             color: #4D0000;
             text-align: center;
-            margin: 100;
+            margin: 0;
+            padding: 20px;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            overflow: hidden;
         }
-        h1 {
-            color: #4D0000;
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-      .container {
-    display: flex;
-    flex-direction: column;
-    align-items: right; 
-   
-        justify-content: right; 
-        height: 100vh; 
-    width: 300%; 
-}
-        .question {
-            font-size: 36px;
-            margin: 200 px ;
-          text-align: space-between;  
-    width: 100%;  
-    max-width: 800px; 
-        }
-        .options {
-            display: flex;
-            flex-direction: space-between;
-            gap: 10px;
-            width: 120%;
-            max-width: 800px;
-           align-items: center; 
-    margin: center; 
-        }
-        .options button {
-            background-color: #FFF8F0;
-            border: 2px solid #4D0000;
-            color: #4D0000;
-            padding: 25px;
-            cursor: pointer;
-            font-size: 18px;
-            text-align: center;
-            width: 120%;
-          max-width: 400px
-          
-          <button id="option${index}" onclick="selectOption(${index})">${option.text}</button>
 
+        @keyframes fadeInLine {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
-        #result {
-            display: none;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        #result img {
-            width: 800px;
-            margin-top: 10px;
-        }
-      function selectOption(index) {
-   
-    document.querySelectorAll(".options button").forEach(btn => {
-        btn.style.backgroundColor = "#FFE6E6";
-    }
-        
-  
 
-    // 進入下一題
-    currentQuestion++;
-    setTimeout(() => {
-        if (currentQuestion < questions.length) {
-            showQuestion();
-        } else {
-            showResult();
+        .line {
+            display: block;
+            opacity: 0;
+            color: #4D0000;
+            font-size: 28px;
+            animation: fadeInLine 0.5s forwards;
         }
-    }, 1000); // 1 秒後進入下一題
-}
+
+        .line:nth-child(1) { animation-delay: 0.2s; }
+        .line:nth-child(2) { animation-delay: 0.4s; }
+        .line:nth-child(3) { animation-delay: 0.6s; }
+        .line:nth-child(4) { animation-delay: 0.8s; }
+        .line:nth-child(5) { animation-delay: 1s; }
 
     </style>
 </head>
-<body onclick="startQuiz()">
+<body>
 
-    <h1 id="title">關於你的社群七大罪</h1>
-    
+    <h1 id="title" onclick="startQuiz()">關於你的社群七大罪 (點擊開始測驗)</h1>
+
     <div id="quizContainer" style="display:none;">
         <div id="questionBox"></div>
         <div class="options" id="optionsBox"></div>
     </div>
 
     <div id="result">
-        <p>你的社群七大罪是：</p>
-        <img id="resultImage" src="" alt="測驗結果">
+        <div id="Pride" style="display:none;">
+            <h1 class="line">驕傲</h1>
+            <p class="line">你只在乎</p>
+            <p class="line">光鮮亮麗的你自己</p>
+        </div>
+        
+        <div id="Envy" style="display:none;">
+            <h1 class="line">嫉妒</h1>
+            <p class="line">你已經看了那個有錢人的頁面八百萬次了。</p>
+        </div>
+
+        <div id="Gluttony" style="display:none;">
+            <h1 class="line">暴食</h1>
+            <p class="line">為什麼全都是食物？</p>
+        </div>
+
+        <div id="Lust" style="display:none;">
+            <h1 class="line">色慾</h1>
+            <p class="line">好了啦不要再放大網紅們的照片了</p>
+        </div>
+
+        <div id="Greed" style="display:none;">
+            <h1 class="line">貪婪</h1>
+            <p class="line">又再重新整理看誰點了愛心嗎？</p>
+        </div>
+
+        <div id="Sloth" style="display:none;">
+            <h1 class="line">怠惰</h1>
+            <p class="line">你在用社群軟體逃避什麼？</p>
+        </div>
+
+        <div id="Wrath" style="display:none;">
+            <h1 class="line">憤怒</h1>
+            <p class="line">蛤 太氣了吧</p>
+        </div>
     </div>
 
     <script>
         const questions = [
-            {
+             {
                 text: "我經常發布自己的成就或獎項，即使這些內容與我的朋友或追蹤者無關。",
                 options: [
                     { text: "完全不符合 —— 我連畢業都懶得發文，誰管這些啊", score: { "Pride": 1 } },
@@ -117,17 +131,8 @@
                     { text: "符合 —— 每次有值得炫耀的事，我都會發一篇", score: { "Pride": 4 } },
                     { text: "非常符合 —— 發文不夠，我還會設計一個限時動態專區來整理所有成就", score: { "Pride": 5 } }
                 ]
-            },
+        
           
-            {
-                text: "當我看到朋友在社群媒體上分享美好的生活時，我會覺得自己的生活相形見絀。",
-                options: [
-                    { text: "完全不符合 —— 我只關心自己的生活，別人的發文對我沒影響", score: { "Envy": 1 } },
-                    { text: "不太符合 —— 偶爾會有點比較，但不會太在意", score: { "Envy": 2 } },
-                    { text: "普通 —— 有時候會覺得自己過得太普通", score: { "Envy": 3 } },
-                    { text: "符合 —— 常常會覺得自己不夠好，開始懷疑人生", score: { "Envy": 4 } },
-                    { text: "非常符合 —— 每次看到別人炫耀生活，就覺得自己什麼都沒有", score: { "Envy": 5 } }
-                ]
             },
            {
                 text: "我會仔細選擇上傳的照片或貼文，以展現自己最好的一面，即使這並不完全符合現實",
@@ -291,25 +296,14 @@
     }
           
         ];
-
-        const results = {
-            "Envy": "https://imgur.com/vklnzUE.png",
-            "Gluttony": "https://imgur.com/jiMpdKP.png",
-            "Lust": "https://imgur.com/r9WvKXK.png",
-            "Pride": "https://imgur.com/V4HH5Ox.png",
-            "Greed": "https://imgur.com/hRruW73.png",
-            "Sloth": "https://imgur.com/SfXKDHY.png",
-            "Wrath": "https://imgur.com/K35AUFA.png"
-        };
+      
 
         let currentQuestion = 0;
         let scores = {
-            "Envy": 0, "Gluttony": 0, "Lust": 0,
-            "Pride": 0, "Greed": 0, "Sloth": 0, "Wrath": 0
+            "Pride": 0, "Envy": 0, "Gluttony": 0, "Lust": 0, "Greed": 0, "Sloth": 0, "Wrath": 0
         };
 
         function startQuiz() {
-            document.body.onclick = null; // 避免後續誤觸
             document.getElementById("title").style.display = "none";
             document.getElementById("quizContainer").style.display = "block";
             showQuestion();
@@ -317,7 +311,7 @@
 
         function showQuestion() {
             const questionData = questions[currentQuestion];
-            document.getElementById("questionBox").innerHTML = `<p class="question">${questionData.text}</p>`;
+            document.getElementById("questionBox").innerHTML = `<p>${questionData.text}</p>`;
             document.getElementById("optionsBox").innerHTML = questionData.options.map((option, index) =>
                 `<button onclick="selectOption(${index})">${option.text}</button>`
             ).join("");
@@ -326,29 +320,23 @@
         function selectOption(index) {
             const selectedOption = questions[currentQuestion].options[index];
 
-            // 累積分數
             for (const sin in selectedOption.score) {
                 scores[sin] += selectedOption.score[sin];
             }
 
-            // 進入下一題或顯示結果
             currentQuestion++;
             if (currentQuestion < questions.length) {
                 showQuestion();
             } else {
-                showResult();
+                const maxSin = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+                showResult(maxSin);
             }
         }
 
-        function showResult() {
+        function showResult(resultType) {
             document.getElementById("quizContainer").style.display = "none";
-            document.getElementById("result").style.display = "block";
-
-            // 找出得分最高的罪
-            const maxSin = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-            document.getElementById("resultImage").src = results[maxSin];
+            document.getElementById(resultType).style.display = "block";
         }
     </script>
-
 </body>
 </html>
